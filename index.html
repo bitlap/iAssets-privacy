@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iAssets 隐私政策</title>
+    <title>iAssets 隐私政策 / 隱私權政策 / Privacy Policy</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -14,12 +14,62 @@
             padding: 20px;
         }
         .container {
-            max-width: 720px;
+            max-width: 900px;
             margin: 40px auto;
             background: #fff;
             border-radius: 12px;
-            padding: 40px;
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .tabs {
+            display: flex;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 18px 20px;
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.85);
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .tab-btn:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+        .tab-btn.active {
+            color: white;
+            background: rgba(255,255,255,0.15);
+        }
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: white;
+            border-radius: 3px 3px 0 0;
+        }
+        .content {
+            padding: 40px;
+            min-height: 500px;
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         h1 {
             font-size: 24px;
@@ -53,40 +103,236 @@
             color: #0066cc;
             text-decoration: none;
         }
+        .contact a:hover {
+            text-decoration: underline;
+        }
+        .lang-indicator {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+                border-radius: 8px;
+            }
+            .content {
+                padding: 25px;
+            }
+            .tabs {
+                flex-direction: column;
+            }
+            .tab-btn {
+                padding: 15px;
+                text-align: center;
+            }
+            .tab-btn.active::after {
+                width: 30%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            .content {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 20px;
+            }
+            h2 {
+                font-size: 16px;
+            }
+            p {
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>iAssets 隐私政策</h1>
-        <p class="update-date">更新日期：2025年7月12日</p>
-
-        <p>iAssets（股票持仓）是一款个人股票持仓管理工具。我们重视您的隐私，本隐私政策说明了我们如何处理您的数据。</p>
-
-        <h2>数据存储</h2>
-        <p>您的所有投资数据（包括股票持仓、操作记录、派息记录等）均存储在您的设备本地以及您自有的 iCloud 账户中。我们不会在服务器端存储或传输您的任何个人投资数据。</p>
-
-        <h2>第三方服务</h2>
-        <p>App 使用以下第三方公开 API 获取行情与汇率数据，这些请求仅用于查询股票价格和汇率信息，不涉及您的个人数据：</p>
-        <p>• 东方财富 API — 用于股票搜索与代码查询<br>
-        • 腾讯股票行情 API — 用于获取实时股价与涨跌幅<br>
-        • ExchangeRate-API — 用于获取实时汇率数据</p>
-
-        <h2>数据收集</h2>
-        <p>本 App 不收集、不存储、不传输任何个人身份信息、设备信息或使用行为数据。App 不包含广告 SDK、分析 SDK 或任何第三方数据收集组件。</p>
-
-        <h2>Apple 数据</h2>
-        <p>App 可能使用 Apple 提供的标准功能（如 iCloud 同步）来备份和恢复您的数据，相关数据处理遵循 Apple 的隐私政策。</p>
-
-        <h2>未成年人</h2>
-        <p>本 App 不面向 13 岁以下儿童，不会故意收集儿童的个人信息。</p>
-
-        <h2>政策更新</h2>
-        <p>我们可能会不时更新本隐私政策。如有重大变更，我们将在 App 内或 App Store 页面进行通知。</p>
-
-        <div class="contact">
-            <p>如有任何问题或建议，请联系开发者：</p>
-            <p>邮箱：<a href="mailto:dreamylost@outlook.com">dreamylost@outlook.com</a></p>
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="zh-cn">
+                简体中文 <span class="lang-indicator">CN</span>
+            </button>
+            <button class="tab-btn" data-tab="zh-tw">
+                繁體中文 <span class="lang-indicator">TW</span>
+            </button>
+            <button class="tab-btn" data-tab="en">
+                English <span class="lang-indicator">EN</span>
+            </button>
+        </div>
+        
+        <div class="content">
+            <!-- 简体中文内容 -->
+            <div id="zh-cn" class="tab-content active">
+                <h1>iAssets 隐私政策</h1>
+                <p class="update-date">更新日期：2025年7月12日</p>
+                
+                <p>iAssets（股票持仓）是一款个人股票持仓管理工具。我们重视您的隐私，本隐私政策说明了我们如何处理您的数据。</p>
+                
+                <h2>数据存储</h2>
+                <p>您的所有投资数据（包括股票持仓、操作记录、派息记录等）均存储在您的设备本地以及您自有的 iCloud 账户中。我们不会在服务器端存储或传输您的任何个人投资数据。</p>
+                
+                <h2>第三方服务</h2>
+                <p>App 使用以下第三方公开 API 获取行情与汇率数据，这些请求仅用于查询股票价格和汇率信息，不涉及您的个人数据：</p>
+                <p>• 东方财富 API — 用于股票搜索与代码查询<br>
+                • 腾讯股票行情 API — 用于获取实时股价与涨跌幅<br>
+                • ExchangeRate-API — 用于获取实时汇率数据</p>
+                
+                <h2>数据收集</h2>
+                <p>本 App 不收集、不存储、不传输任何个人身份信息、设备信息或使用行为数据。App 不包含广告 SDK、分析 SDK 或任何第三方数据收集组件。</p>
+                
+                <h2>Apple 数据</h2>
+                <p>App 可能使用 Apple 提供的标准功能（如 iCloud 同步）来备份和恢复您的数据，相关数据处理遵循 Apple 的隐私政策。</p>
+                
+                <h2>未成年人</h2>
+                <p>本 App 不面向 13 岁以下儿童，不会故意收集儿童的个人信息。</p>
+                
+                <h2>政策更新</h2>
+                <p>我们可能会不时更新本隐私政策。如有重大变更，我们将在 App 内或 App Store 页面进行通知。</p>
+                
+                <div class="contact">
+                    <p>如有任何问题或建议，请联系开发者：</p>
+                    <p>邮箱：<a href="mailto:dreamylost@outlook.com">dreamylost@outlook.com</a></p>
+                </div>
+            </div>
+            
+            <!-- 繁体中文内容 -->
+            <div id="zh-tw" class="tab-content">
+                <h1>iAssets 隱私權政策</h1>
+                <p class="update-date">更新日期：2025年7月12日</p>
+                
+                <p>iAssets（股票持倉）是一款個人股票持倉管理工具。我們重視您的隱私，本隱私權政策說明了我們如何處理您的數據。</p>
+                
+                <h2>數據存儲</h2>
+                <p>您的所有投資數據（包括股票持倉、操作記錄、派息記錄等）均存儲在您的設備本地以及您自有的 iCloud 賬戶中。我們不會在伺服器端存儲或傳輸您的任何個人投資數據。</p>
+                
+                <h2>第三方服務</h2>
+                <p>App 使用以下第三方公開 API 獲取行情與匯率數據，這些請求僅用於查詢股票價格和匯率資訊，不涉及您的個人數據：</p>
+                <p>• 東方財富 API — 用於股票搜尋與代碼查詢<br>
+                • 騰訊股票行情 API — 用於獲取即時股價與漲跌幅<br>
+                • ExchangeRate-API — 用於獲取即時匯率數據</p>
+                
+                <h2>數據收集</h2>
+                <p>本 App 不收集、不存儲、不傳輸任何個人身分資訊、設備資訊或使用行為數據。App 不包含廣告 SDK、分析 SDK 或任何第三方數據收集元件。</p>
+                
+                <h2>Apple 數據</h2>
+                <p>App 可能使用 Apple 提供的標準功能（如 iCloud 同步）來備份和恢復您的數據，相關數據處理遵循 Apple 的隱私權政策。</p>
+                
+                <h2>未成年人</h2>
+                <p>本 App 不面向 13 歲以下兒童，不會故意收集兒童的個人資訊。</p>
+                
+                <h2>政策更新</h2>
+                <p>我們可能會不時更新本隱私權政策。如有重大變更，我們將在 App 內或 App Store 頁面進行通知。</p>
+                
+                <div class="contact">
+                    <p>如有任何問題或建議，請聯繫開發者：</p>
+                    <p>電子郵件：<a href="mailto:dreamylost@outlook.com">dreamylost@outlook.com</a></p>
+                </div>
+            </div>
+            
+            <!-- 英文内容 -->
+            <div id="en" class="tab-content">
+                <h1>iAssets Privacy Policy</h1>
+                <p class="update-date">Last Updated: July 12, 2025</p>
+                
+                <p>iAssets (Stock Portfolio) is a personal stock portfolio management tool. We value your privacy, and this Privacy Policy explains how we handle your data.</p>
+                
+                <h2>Data Storage</h2>
+                <p>All your investment data (including stock holdings, transaction records, dividend records, etc.) is stored locally on your device and within your own iCloud account. We do not store or transmit any of your personal investment data on our servers.</p>
+                
+                <h2>Third-Party Services</h2>
+                <p>The App uses the following third-party public APIs to fetch market and exchange rate data. These requests are solely for retrieving stock prices and exchange rate information and do not involve your personal data:</p>
+                <p>• Eastmoney API — Used for stock search and symbol lookup<br>
+                • Tencent Stock API — Used for real-time stock prices and price changes<br>
+                • ExchangeRate-API — Used for real-time exchange rate data</p>
+                
+                <h2>Data Collection</h2>
+                <p>This App does not collect, store, or transmit any personally identifiable information, device information, or usage behavior data. The App contains no advertising SDKs, analytics SDKs, or any third-party data collection components.</p>
+                
+                <h2>Apple Data</h2>
+                <p>The App may use standard Apple-provided features (such as iCloud sync) to back up and restore your data. Related data processing follows Apple's Privacy Policy.</p>
+                
+                <h2>Children</h2>
+                <p>This App is not directed at children under the age of 13, and we do not knowingly collect personal information from children.</p>
+                
+                <h2>Policy Updates</h2>
+                <p>We may update this Privacy Policy from time to time. In case of significant changes, we will notify users through the App or via the App Store listing.</p>
+                
+                <div class="contact">
+                    <p>If you have any questions or suggestions, please contact the developer:</p>
+                    <p>Email: <a href="mailto:dreamylost@outlook.com">dreamylost@outlook.com</a></p>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            // 设置初始语言
+            const savedLang = localStorage.getItem('preferredLanguage') || 'zh-cn';
+            switchTab(savedLang);
+            
+            // 为每个标签按钮添加点击事件
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabId = btn.getAttribute('data-tab');
+                    switchTab(tabId);
+                    // 保存用户偏好
+                    localStorage.setItem('preferredLanguage', tabId);
+                });
+            });
+            
+            function switchTab(tabId) {
+                // 移除所有active类
+                tabBtns.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // 激活当前标签
+                const activeBtn = document.querySelector(`[data-tab="${tabId}"]`);
+                const activeContent = document.getElementById(tabId);
+                
+                if (activeBtn && activeContent) {
+                    activeBtn.classList.add('active');
+                    activeContent.classList.add('active');
+                }
+                
+                // 更新页面标题
+                const titles = {
+                    'zh-cn': 'iAssets 隐私政策',
+                    'zh-tw': 'iAssets 隱私權政策',
+                    'en': 'iAssets Privacy Policy'
+                };
+                document.title = titles[tabId] + ' / 隱私權政策 / Privacy Policy';
+            }
+            
+            // 检测浏览器语言并设置初始标签
+            const browserLang = navigator.language.toLowerCase();
+            let initialLang = 'zh-cn';
+            
+            if (browserLang.includes('tw') || browserLang.includes('hk')) {
+                initialLang = 'zh-tw';
+            } else if (browserLang.includes('en')) {
+                initialLang = 'en';
+            }
+            
+            // 如果没有保存的语言偏好，则根据浏览器语言设置
+            if (!localStorage.getItem('preferredLanguage')) {
+                switchTab(initialLang);
+                localStorage.setItem('preferredLanguage', initialLang);
+            }
+        });
+    </script>
 </body>
 </html>
