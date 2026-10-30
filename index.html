@@ -9,6 +9,7 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.8;
+            overflow-wrap: anywhere;
             color: #333;
             background: #f5f5f5;
             padding: 20px;
@@ -23,16 +24,16 @@
         }
         .tabs {
             display: flex;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #19324f 0%, #2d4664 100%);
         }
         .tab-btn {
             flex: 1;
             padding: 18px 20px;
             background: transparent;
             border: none;
-            color: rgba(255,255,255,0.85);
+            color: #ffffff;
             font-size: 16px;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
@@ -42,8 +43,16 @@
             color: white;
         }
         .tab-btn.active {
-            color: white;
-            background: rgba(255,255,255,0.15);
+            color: #142b43;
+            background: #ffffff;
+        }
+        .tab-btn:focus-visible {
+            outline: 3px solid #d6af6d;
+            outline-offset: -4px;
+        }
+        .tab-btn.active:hover {
+            color: #142b43;
+            background: #ffffff;
         }
         .tab-btn.active::after {
             content: '';
@@ -53,7 +62,7 @@
             transform: translateX(-50%);
             width: 60%;
             height: 3px;
-            background: white;
+            background: #ad803a;
             border-radius: 3px 3px 0 0;
         }
         .content {
@@ -108,14 +117,26 @@
         }
         .lang-indicator {
             display: inline-block;
-            background: #f0f0f0;
+            background: rgba(255,255,255,0.12);
+            color: #ffffff;
+            border: 1px solid rgba(255,255,255,0.35);
+            min-width: 34px;
+            text-align: center;
             padding: 2px 8px;
             border-radius: 4px;
             font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
             margin-left: 10px;
             vertical-align: middle;
         }
         
+        .tab-btn.active .lang-indicator {
+            background: #19324f;
+            border-color: #19324f;
+            color: #ffffff;
+        }
+
         /* 响应式设计 */
         @media (max-width: 768px) {
             .container {
@@ -159,116 +180,155 @@
 <body>
     <div class="container">
         <div class="tabs">
-            <button class="tab-btn active" data-tab="zh-cn">
+            <button class="tab-btn active" data-tab="zh-cn" aria-pressed="true">
                 简体中文 <span class="lang-indicator">CN</span>
             </button>
-            <button class="tab-btn" data-tab="zh-tw">
+            <button class="tab-btn" data-tab="zh-tw" aria-pressed="false">
                 繁體中文 <span class="lang-indicator">TW</span>
             </button>
-            <button class="tab-btn" data-tab="en">
+            <button class="tab-btn" data-tab="en" aria-pressed="false">
                 English <span class="lang-indicator">EN</span>
             </button>
         </div>
         
         <div class="content">
             <!-- 简体中文内容 -->
-            <div id="zh-cn" class="tab-content active">
+            <div id="zh-cn" class="tab-content active" lang="zh-CN">
                 <h1>iAssets 隐私政策</h1>
-                <p class="update-date">更新日期：2025年7月12日</p>
-                
-                <p>iAssets（股票持仓）是一款个人股票持仓管理工具。我们重视您的隐私，本隐私政策说明了我们如何处理您的数据。</p>
-                
-                <h2>数据存储</h2>
-                <p>您的所有投资数据（包括股票持仓、操作记录、派息记录等）均存储在您的设备本地以及您自有的 iCloud 账户中。我们不会在服务器端存储或传输您的任何个人投资数据。</p>
-                
-                <h2>第三方服务</h2>
-                <p>App 使用以下第三方公开 API 获取行情与汇率数据，这些请求仅用于查询股票价格和汇率信息，不涉及您的个人数据：</p>
-                <p>• 东方财富 API — 用于股票搜索与代码查询<br>
-                • 腾讯股票行情 API — 用于获取实时股价与涨跌幅<br>
-                • ExchangeRate-API — 用于获取实时汇率数据</p>
-                
-                <h2>数据收集</h2>
-                <p>本 App 不收集、不存储、不传输任何个人身份信息、设备信息或使用行为数据。App 不包含广告 SDK、分析 SDK 或任何第三方数据收集组件。</p>
-                
-                <h2>Apple 数据</h2>
-                <p>App 可能使用 Apple 提供的标准功能（如 iCloud 同步）来备份和恢复您的数据，相关数据处理遵循 Apple 的隐私政策。</p>
-                
+                <p class="update-date">更新日期：2026年10月30日</p>
+                <p>iAssets 是一款个人资产管理工具，支持股票、存款、理财及受支持的数字币账户查询。本政策说明免费版及 Pro 内购功能涉及的数据处理方式。</p>
+
+                <h2>数据存储与 iCloud</h2>
+                <p>您手动记录的股票持仓、操作记录、派息、资产账户、收益历史及设置保存在设备本地；在系统 iCloud 服务可用时，支持的数据会同步至您自己的 iCloud 账户。我们不运营用于保存这些资产账本的开发者服务器。iCloud 的存储与传输由 Apple 提供，您可在系统设置中管理相关权限和云端文件。</p>
+
+                <h2>Pro 内购、订阅与支付</h2>
+                <p>iAssets Pro 提供月付、年付自动续期订阅及一次性永久买断。价格、币种、周期与实际可购买的方案以购买页面和 App Store 确认页为准。支付由 Apple 的 App Store 内购系统处理；App 不读取您的 Apple 账户密码、银行卡号或完整付款资料。</p>
+                <p>App 使用 Apple 的 StoreKit，在设备端验证 Apple 签名的购买结果，并读取判断 Pro 权益所需的商品标识、有效期、退款或撤销状态及账单宽限期状态，以解锁功能、恢复购买并处理续订或到期。我们不会将这些设备端权益验证信息另行上传至开发者服务器，也不会将它们用于广告、跟踪或用户画像。开发者可能通过 App Store Connect 获取 Apple 提供的销售及财务报告。</p>
+                <p>月付和年付将自动续订，除非您在当前周期结束前至少 24 小时取消。您可在 <a href="https://apps.apple.com/account/subscriptions">App Store 订阅管理</a>中查看、管理或取消。买断不自动续费，但购买买断不会自动取消已有订阅。取消续订通常不影响已付费周期内的权益；到期、退款或撤销可能影响后续 Pro 使用。退款由 Apple 根据适用规则处理，可通过 <a href="https://reportaproblem.apple.com/">Apple 问题报告页面</a>申请。</p>
+
+                <h2>老用户永久 Pro 权益</h2>
+                <p>为识别首个收费版本上线前已获取本应用的老用户，App 会在设备端验证 Apple 提供的 AppTransaction，并将首次获取日期与固定的发布分界时间比较。符合条件的老用户无需再次付费，即可获得永久 Pro；此判断不以本地资产内容或导入文件为依据。我们不通过该过程获取您的 Apple 账户密码或建立额外的用户账户。暂时无法完成验证时，请联网后使用「恢复购买」，App 会暂时禁用购买以避免误收费。</p>
+
+                <h2>行情、汇率与第三方请求</h2>
+                <p>App 按需直接向东方财富、腾讯及 Yahoo Finance 等数据源查询股票搜索结果和行情，向 ExchangeRate-API 查询汇率，并从 Financial Modeling Prep、Stocktwits 等来源获取股票图标。数字币估值还可能使用交易所行情及 Coinbase 公开汇率。请求可能包含搜索词、股票代码或币种，但不会向这些公开行情服务发送手动记录的持仓数量、成本或完整资产账本。</p>
+                <p>服务提供方会接收处理请求所必需的网络信息，例如 IP 地址、请求时间和请求参数，并可能按各自的政策记录这些信息。请勿将「开发者不运营数据服务器」理解为所有第三方服务都不会处理数据。Apple 的支付、购买记录和 iCloud 服务适用 <a href="https://www.apple.com/legal/privacy/">Apple 隐私政策</a>。</p>
+
+                <h2>数字币账户与 API 凭证</h2>
+                <p>当您主动添加受支持的交易所连接（当前为币安）时，API Key、API Secret 及相关连接信息保存在本机 iOS 钥匙串中，不写入应用的 iCloud 同步文件或 JSON 导出备份。查询由设备直接发往交易所；请求会包含 API Key、请求参数及必要签名，API Secret 用于本机生成签名，不按原文发送。交易所按其规则处理这些认证及查询信息。</p>
+                <p>App 仅查询和展示账户余额、仓位及估值，不提供下单、提现或转账操作。查询结果仅在当前会话内存中展示，不写入本机资产快照文件；连接信息及 API 凭证会持续保留，直至您在 App 内移除连接。建议使用只读密钥，并关闭提现及转账权限。您也可随时在交易所撤销密钥。</p>
+
+                <h2>照片、文件与导入导出</h2>
+                <p>自定义股票可由您主动通过系统选择器选择照片或文件。所选图片用于本机展示与缓存，App 不会因此上传您的照片库，也不会获取与该选择无关的照片内容。您可在系统设置中管理相关权限；不授予照片访问权限不会影响无关功能。</p>
+                <p>Pro 导入导出仅在您主动操作时读写所选文件。导出文件可能包含资产账本和设置，不包含交易所 API 凭证或用于授予 Pro 的权益信息。导入前的回滚备份存放在本机。请妥善保管导出文件；如果选择第三方云盘或将文件分享给他人，后续处理取决于您选择的目的地及接收方。</p>
+
+                <h2>数据保留、删除与您的选择</h2>
+                <p>您可以在 App 内删除股票或资产记录、移除交易所连接，并在系统设置或「文件」App 中管理 iCloud 数据和导出备份。卸载 App 通常会删除本地应用容器，但不一定清除 iCloud 文件、已导出的副本或系统钥匙串条目；建议卸载前移除交易所连接，并按需要在交易所撤销密钥。App 不设独立注册账户。</p>
+                <p>订阅到期不会自动删除或截断已有资产记录，但会限制 Pro 专属功能和超出免费额度的新增操作。Apple 管理的购买记录及依法需保留的交易资料由 Apple 按其规则保存，卸载 App 或删除本地资产不会删除这些记录，也不会取消自动续期订阅。我们没有可代您删除的开发者服务器资产账本；如需协助，请通过下方邮箱联系。</p>
+
+                <h2>广告、分析与隐私政策页面</h2>
+                <p>App 不包含广告 SDK 或用于行为跟踪的分析 SDK，不将您的资产或购买验证信息出售给数据经纪商，也不用于跨应用广告跟踪。若您主动发送反馈邮件，开发者会收到您提供的邮箱、正文和附件，仅用于处理反馈，并在处理请求及必要的后续支持期间保留。您可通过下方邮箱请求删除反馈邮件，依法需保留的资料除外。请勿发送 API 密钥、付款凭证或不必要的敏感信息。</p>
+                <p>本政策网页由 GitHub Pages 托管，网页访问的网络信息可能由 GitHub 按 <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub 隐私声明</a>处理。网页仅在浏览器本地存储中保存语言偏好，直至您清除网站数据；页面不设置广告或分析跟踪程序。</p>
+
                 <h2>未成年人</h2>
                 <p>本 App 不面向 13 岁以下儿童，不会故意收集儿童的个人信息。</p>
-                
-                <h2>政策更新</h2>
-                <p>我们可能会不时更新本隐私政策。如有重大变更，我们将在 App 内或 App Store 页面进行通知。</p>
-                
+                <h2>政策更新与使用条款</h2>
+                <p>我们可能随功能或数据处理方式变化更新本政策；重大变更会通过 App 内或 App Store 页面告知。本应用使用 <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple 标准最终用户许可协议（EULA）</a>；本政策不替代购买确认页及适用的 Apple 服务条款。</p>
                 <div class="contact">
-                    <p>如有任何问题或建议，请联系开发者：</p>
+                    <p>如对隐私、数据删除或购买权益有疑问，请联系开发者：</p>
                     <p>邮箱：<a href="mailto:dreamylost@outlook.com">dreamylost@outlook.com</a></p>
                 </div>
             </div>
             
             <!-- 繁体中文内容 -->
-            <div id="zh-tw" class="tab-content">
+            <div id="zh-tw" class="tab-content" lang="zh-Hant">
                 <h1>iAssets 隱私權政策</h1>
-                <p class="update-date">更新日期：2025年7月12日</p>
-                
-                <p>iAssets（股票持倉）是一款個人股票持倉管理工具。我們重視您的隱私，本隱私權政策說明了我們如何處理您的數據。</p>
-                
-                <h2>數據存儲</h2>
-                <p>您的所有投資數據（包括股票持倉、操作記錄、派息記錄等）均存儲在您的設備本地以及您自有的 iCloud 賬戶中。我們不會在伺服器端存儲或傳輸您的任何個人投資數據。</p>
-                
-                <h2>第三方服務</h2>
-                <p>App 使用以下第三方公開 API 獲取行情與匯率數據，這些請求僅用於查詢股票價格和匯率資訊，不涉及您的個人數據：</p>
-                <p>• 東方財富 API — 用於股票搜尋與代碼查詢<br>
-                • 騰訊股票行情 API — 用於獲取即時股價與漲跌幅<br>
-                • ExchangeRate-API — 用於獲取即時匯率數據</p>
-                
-                <h2>數據收集</h2>
-                <p>本 App 不收集、不存儲、不傳輸任何個人身分資訊、設備資訊或使用行為數據。App 不包含廣告 SDK、分析 SDK 或任何第三方數據收集元件。</p>
-                
-                <h2>Apple 數據</h2>
-                <p>App 可能使用 Apple 提供的標準功能（如 iCloud 同步）來備份和恢復您的數據，相關數據處理遵循 Apple 的隱私權政策。</p>
-                
+                <p class="update-date">更新日期：2026年10月30日</p>
+                <p>iAssets 是一款個人資產管理工具，支援股票、存款、理財及受支援的數位幣帳戶查詢。本政策說明免費版及 Pro App 內購買功能涉及的資料處理方式。</p>
+
+                <h2>資料儲存與 iCloud</h2>
+                <p>您手動記錄的股票持倉、操作記錄、股息、資產帳戶、收益歷史及設定保存在裝置本機；系統 iCloud 服務可用時，支援的資料會同步至您自己的 iCloud 帳戶。我們不營運用於保存這些資產帳本的開發者伺服器。iCloud 的儲存與傳輸由 Apple 提供，您可在系統設定中管理相關權限和雲端檔案。</p>
+
+                <h2>Pro App 內購買、訂閱與付款</h2>
+                <p>iAssets Pro 提供月付、年付自動續訂及一次性永久買斷。價格、幣別、週期與實際可購買的方案以購買頁面和 App Store 確認頁為準。付款由 Apple 的 App Store App 內購買系統處理；App 不讀取您的 Apple 帳戶密碼、銀行卡號或完整付款資料。</p>
+                <p>App 使用 Apple 的 StoreKit，在裝置端驗證 Apple 簽署的購買結果，並讀取判斷 Pro 權益所需的商品識別碼、有效期、退款或撤銷狀態及帳單寬限期狀態，以解鎖功能、恢復購買並處理續訂或到期。我們不會將這些裝置端權益驗證資訊另行上傳至開發者伺服器，也不會用於廣告、追蹤或使用者分析。開發者可能透過 App Store Connect 取得 Apple 提供的銷售及財務報告。</p>
+                <p>月付和年付將自動續訂，除非您在目前週期結束前至少 24 小時取消。您可在 <a href="https://apps.apple.com/account/subscriptions">App Store 訂閱管理</a>中查看、管理或取消。買斷不自動續費，但購買買斷不會自動取消已有訂閱。取消續訂通常不影響已付費週期內的權益；到期、退款或撤銷可能影響後續 Pro 使用。退款由 Apple 依適用規則處理，可透過 <a href="https://reportaproblem.apple.com/">Apple 問題回報頁面</a>申請。</p>
+
+                <h2>老用戶永久 Pro 權益</h2>
+                <p>為識別首個收費版本上線前已取得本應用程式的老用戶，App 會在裝置端驗證 Apple 提供的 AppTransaction，並將首次取得日期與固定的發布分界時間比較。符合條件的老用戶無須再次付費，即可獲得永久 Pro；此判斷不以本機資產內容或匯入檔案為依據。我們不會透過此流程取得您的 Apple 帳戶密碼或建立額外使用者帳戶。暫時無法完成驗證時，請連線後使用「恢復購買」，App 會暫時停用購買以避免誤收費。</p>
+
+                <h2>行情、匯率與第三方請求</h2>
+                <p>App 視需要直接向東方財富、騰訊及 Yahoo Finance 等資料來源查詢股票搜尋結果和行情，向 ExchangeRate-API 查詢匯率，並從 Financial Modeling Prep、Stocktwits 等來源取得股票圖示。數位幣估值還可能使用交易所行情及 Coinbase 公開匯率。請求可能包含搜尋詞、股票代碼或幣別，但不會向這些公開行情服務傳送手動記錄的持倉數量、成本或完整資產帳本。</p>
+                <p>服務提供者會接收處理請求所需的網路資訊，例如 IP 位址、請求時間和請求參數，並可能依各自政策記錄這些資訊。請勿將「開發者不營運資料伺服器」理解為所有第三方服務都不會處理資料。Apple 的付款、購買記錄和 iCloud 服務適用 <a href="https://www.apple.com/legal/privacy/">Apple 隱私權政策</a>。</p>
+
+                <h2>數位幣帳戶與 API 憑證</h2>
+                <p>當您主動新增受支援的交易所連線（目前為幣安）時，API Key、API Secret 及相關連線資訊保存在本機 iOS 鑰匙圈中，不寫入應用程式的 iCloud 同步檔案或 JSON 匯出備份。查詢由裝置直接傳送至交易所；請求會包含 API Key、請求參數及必要簽章，API Secret 用於本機產生簽章，不以原文傳送。交易所依其規則處理這些驗證及查詢資訊。</p>
+                <p>App 僅查詢和展示帳戶餘額、倉位及估值，不提供下單、提領或轉帳操作。查詢結果僅在目前工作階段的記憶體中展示，不寫入本機資產快照檔案；連線資訊及 API 憑證會持續保留，直到您在 App 內移除連線。建議使用唯讀金鑰，並關閉提領及轉帳權限。您也可隨時在交易所撤銷金鑰。</p>
+
+                <h2>照片、檔案與匯入匯出</h2>
+                <p>自訂股票可由您主動透過系統選擇器選取照片或檔案。所選圖片用於本機展示與快取，App 不會因此上傳您的照片圖庫，也不會取得與該選擇無關的照片內容。您可在系統設定中管理相關權限；不授予照片存取權限不會影響無關功能。</p>
+                <p>Pro 匯入匯出僅在您主動操作時讀寫所選檔案。匯出檔案可能包含資產帳本和設定，不包含交易所 API 憑證或用於授予 Pro 的權益資訊。匯入前的回復備份存放在本機。請妥善保管匯出檔案；如果選擇第三方雲端硬碟或將檔案分享給他人，後續處理取決於您選擇的目的地及接收方。</p>
+
+                <h2>資料保留、刪除與您的選擇</h2>
+                <p>您可以在 App 內刪除股票或資產記錄、移除交易所連線，並在系統設定或「檔案」App 中管理 iCloud 資料和匯出備份。移除 App 通常會刪除本機應用程式容器，但不一定清除 iCloud 檔案、已匯出的副本或系統鑰匙圈項目；建議移除 App 前移除交易所連線，並視需要在交易所撤銷金鑰。App 不設獨立註冊帳戶。</p>
+                <p>訂閱到期不會自動刪除或截斷已有資產記錄，但會限制 Pro 專屬功能和超出免費額度的新增操作。Apple 管理的購買記錄及依法須保留的交易資料由 Apple 依其規則保存，移除 App 或刪除本機資產不會刪除這些記錄，也不會取消自動續訂。我們沒有可代您刪除的開發者伺服器資產帳本；如需協助，請透過下方電子郵件聯絡。</p>
+
+                <h2>廣告、分析與隱私權政策頁面</h2>
+                <p>App 不包含廣告 SDK 或用於行為追蹤的分析 SDK，不將您的資產或購買驗證資訊出售給資料仲介商，也不用於跨應用程式廣告追蹤。若您主動傳送意見電子郵件，開發者會收到您提供的電子郵件地址、正文和附件，僅用於處理意見，並在處理請求及必要的後續支援期間保留。您可透過下方電子郵件要求刪除意見郵件，依法須保留的資料除外。請勿傳送 API 金鑰、付款憑證或不必要的敏感資訊。</p>
+                <p>本政策網頁由 GitHub Pages 託管，網頁存取的網路資訊可能由 GitHub 依 <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub 隱私權聲明</a>處理。網頁僅在瀏覽器本機儲存中保存語言偏好，直到您清除網站資料；頁面不設置廣告或分析追蹤程式。</p>
+
                 <h2>未成年人</h2>
-                <p>本 App 不面向 13 歲以下兒童，不會故意收集兒童的個人資訊。</p>
-                
-                <h2>政策更新</h2>
-                <p>我們可能會不時更新本隱私權政策。如有重大變更，我們將在 App 內或 App Store 頁面進行通知。</p>
-                
+                <p>本 App 不面向 13 歲以下兒童，不會故意蒐集兒童的個人資訊。</p>
+                <h2>政策更新與使用條款</h2>
+                <p>我們可能隨功能或資料處理方式變化更新本政策；重大變更會透過 App 內或 App Store 頁面告知。本應用程式使用 <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple 標準最終使用者授權協議（EULA）</a>；本政策不取代購買確認頁及適用的 Apple 服務條款。</p>
                 <div class="contact">
-                    <p>如有任何問題或建議，請聯繫開發者：</p>
+                    <p>如對隱私、資料刪除或購買權益有疑問，請聯絡開發者：</p>
                     <p>電子郵件：<a href="mailto:dreamylost@outlook.com">dreamylost@outlook.com</a></p>
                 </div>
             </div>
             
             <!-- 英文内容 -->
-            <div id="en" class="tab-content">
+            <div id="en" class="tab-content" lang="en">
                 <h1>iAssets Privacy Policy</h1>
-                <p class="update-date">Last Updated: July 12, 2025</p>
-                
-                <p>iAssets (Stock Portfolio) is a personal stock portfolio management tool. We value your privacy, and this Privacy Policy explains how we handle your data.</p>
-                
-                <h2>Data Storage</h2>
-                <p>All your investment data (including stock holdings, transaction records, dividend records, etc.) is stored locally on your device and within your own iCloud account. We do not store or transmit any of your personal investment data on our servers.</p>
-                
-                <h2>Third-Party Services</h2>
-                <p>The App uses the following third-party public APIs to fetch market and exchange rate data. These requests are solely for retrieving stock prices and exchange rate information and do not involve your personal data:</p>
-                <p>• Eastmoney API — Used for stock search and symbol lookup<br>
-                • Tencent Stock API — Used for real-time stock prices and price changes<br>
-                • ExchangeRate-API — Used for real-time exchange rate data</p>
-                
-                <h2>Data Collection</h2>
-                <p>This App does not collect, store, or transmit any personally identifiable information, device information, or usage behavior data. The App contains no advertising SDKs, analytics SDKs, or any third-party data collection components.</p>
-                
-                <h2>Apple Data</h2>
-                <p>The App may use standard Apple-provided features (such as iCloud sync) to back up and restore your data. Related data processing follows Apple's Privacy Policy.</p>
-                
+                <p class="update-date">Last updated: October 30, 2026</p>
+                <p>iAssets is a personal asset management app for stocks, deposits, wealth products and supported cryptocurrency account viewing. This policy explains data handling for the free app and Pro in-app purchases.</p>
+
+                <h2>Local storage and iCloud</h2>
+                <p>Your manually recorded holdings, operations, dividends, asset accounts, profit history and settings are stored on your device. Supported data also syncs to your own iCloud account when the system service is available. We do not operate developer servers to hold these asset ledgers. Apple provides iCloud storage and transmission; you can manage access and cloud files in system settings.</p>
+
+                <h2>Pro purchases, subscriptions and payments</h2>
+                <p>iAssets Pro offers monthly and annual auto-renewable subscriptions and a one-time lifetime purchase. Prices, currencies, billing periods and available plans are shown in the purchase screen and App Store confirmation. Apple processes payments through App Store In-App Purchase. The app does not read your Apple Account password, card number or full payment details.</p>
+                <p>The app uses Apple's StoreKit to verify Apple-signed purchase results on your device. It reads the product identifiers, entitlement expiry, refund or revocation status and billing grace-period status needed to unlock Pro, restore purchases and handle renewal or expiry. We do not separately upload these on-device entitlement verification details to developer servers or use them for advertising, tracking or profiling. The developer may receive sales and financial reports provided by Apple through App Store Connect.</p>
+                <p>Monthly and annual subscriptions renew automatically unless canceled at least 24 hours before the current period ends. You can review, manage or cancel them in <a href="https://apps.apple.com/account/subscriptions">App Store subscription settings</a>. Lifetime access does not renew, but purchasing it does not automatically cancel an existing subscription. Canceling renewal normally preserves access for the paid period; expiry, refunds or revocation may affect subsequent Pro access. Apple handles refund requests under its applicable rules through <a href="https://reportaproblem.apple.com/">Report a Problem</a>.</p>
+
+                <h2>Lifetime Pro for existing users</h2>
+                <p>To identify users who acquired the app before its first monetized release, the app verifies Apple's AppTransaction on the device and compares the original acquisition date against a fixed release cutoff. Eligible existing users receive lifetime Pro without another payment. Eligibility is not based on local asset contents or imported files. This process does not disclose your Apple Account password or create a separate app account. If verification is temporarily unavailable, connect to the internet and use Restore Purchases; new purchases are temporarily disabled to avoid charging an eligible existing user.</p>
+
+                <h2>Market data, exchange rates and third-party requests</h2>
+                <p>The app requests stock search results and quotes directly from sources such as Eastmoney, Tencent and Yahoo Finance, exchange rates from ExchangeRate-API, and stock logos from sources such as Financial Modeling Prep and Stocktwits. Cryptocurrency valuation may also use exchange prices and Coinbase public exchange rates. Requests may contain search terms, stock symbols or currency codes; these public market-data requests do not include your manually recorded quantities, costs or complete asset ledger.</p>
+                <p>Providers receive network information necessary to serve requests, such as IP addresses, request times and parameters, and may log it under their own policies. Our not operating data servers does not mean third-party services process no data. Apple's payment, purchase-history and iCloud services are subject to the <a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a>.</p>
+
+                <h2>Cryptocurrency accounts and API credentials</h2>
+                <p>If you choose to add a supported exchange connection (currently Binance), its API Key, API Secret and connection details are stored in the local iOS Keychain, not in the app's iCloud sync files or JSON exports. Your device sends queries directly to the exchange. Requests include the API Key, request parameters and required signatures; the API Secret generates signatures locally and is not sent in plain text. The exchange handles authentication and query information under its own rules.</p>
+                <p>The app only retrieves and displays balances, positions and valuations. It does not place orders, withdraw or transfer funds. Query results are displayed in session memory, not written to local asset snapshot files. Connection details and credentials remain until you remove the connection in the app. Prefer read-only keys and disable withdrawal and transfer permissions. You can also revoke a key at the exchange at any time.</p>
+
+                <h2>Photos, files, import and export</h2>
+                <p>You may choose a photo or file through a system picker for a custom stock. Selected images are displayed and cached locally; the app does not upload your photo library or obtain unrelated photo contents through this selection. You can manage relevant permissions in system settings. Declining photo access does not affect unrelated features.</p>
+                <p>Pro import and export read or write selected files only when you initiate the action. Exports may contain your asset ledger and settings, but not exchange API credentials or entitlement information that grants Pro. A pre-import rollback backup is kept locally. Keep exported files secure. If you choose a third-party cloud drive or share a file, subsequent handling depends on the destination and recipient you select.</p>
+
+                <h2>Retention, deletion and your choices</h2>
+                <p>You can delete stock or asset records and remove exchange connections in the app, and manage iCloud data and exported backups in system settings or Files. Uninstalling normally removes the local app container, but may leave iCloud files, exported copies or system Keychain items. Remove exchange connections before uninstalling and revoke exchange keys as needed. The app has no separate registered user account.</p>
+                <p>Subscription expiry does not automatically delete or truncate existing asset records, but it limits Pro-only features and additions above the free allowance. Apple retains its purchase history and transaction records under its policies and applicable obligations. Uninstalling the app or deleting local assets does not delete Apple's records or cancel an auto-renewable subscription. We do not hold developer-server asset ledgers to delete on your behalf. Contact us below if you need assistance.</p>
+
+                <h2>Advertising, analytics and this policy website</h2>
+                <p>The app has no advertising SDKs or behavioral analytics SDKs. We do not sell your assets or purchase-verification information to data brokers or use it for cross-app advertising tracking. If you email feedback, the developer receives the email address, message and attachments you provide, solely to address your feedback and for necessary follow-up support. You may request deletion of feedback emails using the address below, subject to any required legal retention. Do not send API keys, payment credentials or unnecessary sensitive information.</p>
+                <p>GitHub Pages hosts this policy website and may process network information about visits under the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>. The page stores only its language preference in browser local storage until you clear site data. It contains no advertising or analytics trackers.</p>
+
                 <h2>Children</h2>
-                <p>This App is not directed at children under the age of 13, and we do not knowingly collect personal information from children.</p>
-                
-                <h2>Policy Updates</h2>
-                <p>We may update this Privacy Policy from time to time. In case of significant changes, we will notify users through the App or via the App Store listing.</p>
-                
+                <p>The app is not directed at children under 13, and we do not knowingly collect children's personal information.</p>
+                <h2>Policy updates and terms of use</h2>
+                <p>We may update this policy as features or data handling change. Significant changes will be announced in the app or App Store listing. The app uses <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple's standard End User License Agreement (EULA)</a>. This policy does not replace the purchase confirmation or applicable Apple service terms.</p>
                 <div class="contact">
-                    <p>If you have any questions or suggestions, please contact the developer:</p>
+                    <p>For privacy, data-deletion or purchase-access questions, contact the developer:</p>
                     <p>Email: <a href="mailto:dreamylost@outlook.com">dreamylost@outlook.com</a></p>
                 </div>
             </div>
@@ -281,7 +341,13 @@
             const tabContents = document.querySelectorAll('.tab-content');
             
             // 设置初始语言
-            const savedLang = localStorage.getItem('preferredLanguage') || 'zh-cn';
+            const supportedLanguages = ['zh-cn', 'zh-tw', 'en'];
+            let storedLanguage = null;
+            try { storedLanguage = localStorage.getItem('preferredLanguage'); } catch (_) {}
+            const savedLang = supportedLanguages.includes(storedLanguage) ? storedLanguage : 'zh-cn';
+            function saveLanguage(value) {
+                try { localStorage.setItem('preferredLanguage', value); } catch (_) {}
+            }
             switchTab(savedLang);
             
             // 为每个标签按钮添加点击事件
@@ -290,13 +356,16 @@
                     const tabId = btn.getAttribute('data-tab');
                     switchTab(tabId);
                     // 保存用户偏好
-                    localStorage.setItem('preferredLanguage', tabId);
+                    saveLanguage(tabId);
                 });
             });
             
             function switchTab(tabId) {
                 // 移除所有active类
-                tabBtns.forEach(btn => btn.classList.remove('active'));
+                tabBtns.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-pressed', 'false');
+                });
                 tabContents.forEach(content => content.classList.remove('active'));
                 
                 // 激活当前标签
@@ -305,6 +374,7 @@
                 
                 if (activeBtn && activeContent) {
                     activeBtn.classList.add('active');
+                    activeBtn.setAttribute('aria-pressed', 'true');
                     activeContent.classList.add('active');
                 }
                 
@@ -328,9 +398,9 @@
             }
             
             // 如果没有保存的语言偏好，则根据浏览器语言设置
-            if (!localStorage.getItem('preferredLanguage')) {
+            if (!supportedLanguages.includes(storedLanguage)) {
                 switchTab(initialLang);
-                localStorage.setItem('preferredLanguage', initialLang);
+                saveLanguage(initialLang);
             }
         });
     </script>
