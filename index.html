@@ -24,16 +24,16 @@
         }
         .tabs {
             display: flex;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #19324f 0%, #2d4664 100%);
         }
         .tab-btn {
             flex: 1;
             padding: 18px 20px;
             background: transparent;
             border: none;
-            color: rgba(255,255,255,0.85);
+            color: #ffffff;
             font-size: 16px;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
@@ -43,8 +43,16 @@
             color: white;
         }
         .tab-btn.active {
-            color: white;
-            background: rgba(255,255,255,0.15);
+            color: #142b43;
+            background: #ffffff;
+        }
+        .tab-btn:focus-visible {
+            outline: 3px solid #d6af6d;
+            outline-offset: -4px;
+        }
+        .tab-btn.active:hover {
+            color: #142b43;
+            background: #ffffff;
         }
         .tab-btn.active::after {
             content: '';
@@ -54,7 +62,7 @@
             transform: translateX(-50%);
             width: 60%;
             height: 3px;
-            background: white;
+            background: #ad803a;
             border-radius: 3px 3px 0 0;
         }
         .content {
@@ -109,14 +117,26 @@
         }
         .lang-indicator {
             display: inline-block;
-            background: #f0f0f0;
+            background: rgba(255,255,255,0.12);
+            color: #ffffff;
+            border: 1px solid rgba(255,255,255,0.35);
+            min-width: 34px;
+            text-align: center;
             padding: 2px 8px;
             border-radius: 4px;
             font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
             margin-left: 10px;
             vertical-align: middle;
         }
         
+        .tab-btn.active .lang-indicator {
+            background: #19324f;
+            border-color: #19324f;
+            color: #ffffff;
+        }
+
         /* 响应式设计 */
         @media (max-width: 768px) {
             .container {
@@ -160,13 +180,13 @@
 <body>
     <div class="container">
         <div class="tabs">
-            <button class="tab-btn active" data-tab="zh-cn">
+            <button class="tab-btn active" data-tab="zh-cn" aria-pressed="true">
                 简体中文 <span class="lang-indicator">CN</span>
             </button>
-            <button class="tab-btn" data-tab="zh-tw">
+            <button class="tab-btn" data-tab="zh-tw" aria-pressed="false">
                 繁體中文 <span class="lang-indicator">TW</span>
             </button>
-            <button class="tab-btn" data-tab="en">
+            <button class="tab-btn" data-tab="en" aria-pressed="false">
                 English <span class="lang-indicator">EN</span>
             </button>
         </div>
@@ -342,7 +362,10 @@
             
             function switchTab(tabId) {
                 // 移除所有active类
-                tabBtns.forEach(btn => btn.classList.remove('active'));
+                tabBtns.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-pressed', 'false');
+                });
                 tabContents.forEach(content => content.classList.remove('active'));
                 
                 // 激活当前标签
@@ -351,6 +374,7 @@
                 
                 if (activeBtn && activeContent) {
                     activeBtn.classList.add('active');
+                    activeBtn.setAttribute('aria-pressed', 'true');
                     activeContent.classList.add('active');
                 }
                 
